@@ -1,23 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Router } from '@angular/router';
-import { error } from 'selenium-webdriver';
+import { ActivatedRoute } from '@angular/router';
 import { FotoService } from '../service/foto.service';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-hal4',
+  templateUrl: './hal4.page.html',
+  styleUrls: ['./hal4.page.scss'],
 })
-export class Tab3Page {
+export class Hal4Page implements OnInit {
 
-  constructor(private afStorage:AngularFireStorage, public fotoservice:FotoService,private router:Router) {}
+  constructor(private afStorage:AngularFireStorage, public fotoservice:FotoService, aroute:ActivatedRoute) {}
 
   urlImageStorage:string[]=[]
 
   async ionViewDidEnter(){
     await this.fotoservice.loadFoto()
     this.tampilkanData()
+  }
+  link
+  ngOnInit(){
+    
   }
 
   tampilkanData(){
@@ -34,7 +37,7 @@ export class Tab3Page {
         console.log(error)
       })
   }
-  detail(link){
-    this.router.navigate(['/hal4/',link])    
-  }
+
+
+
 }

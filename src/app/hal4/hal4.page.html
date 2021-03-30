@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Halaman 4</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+    <ion-row>
+      <ion-col size="3" *ngFor="let ifoto of urlImageStorage; index as position">
+        <ion-img [src]='ifoto'></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

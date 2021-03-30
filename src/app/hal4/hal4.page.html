@@ -8,11 +8,5 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid>
-    <ion-row>
-      <ion-col size="3" *ngFor="let ifoto of urlImageStorage; index as position">
-        <ion-img [src]='ifoto'></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-img [src]="link" *ngIf="link!=null"></ion-img>
 </ion-content>

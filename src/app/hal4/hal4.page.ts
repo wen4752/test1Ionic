@@ -10,7 +10,7 @@ import { FotoService } from '../service/foto.service';
 })
 export class Hal4Page implements OnInit {
 
-  constructor(private afStorage:AngularFireStorage, public fotoservice:FotoService, aroute:ActivatedRoute) {}
+  constructor(private afStorage:AngularFireStorage, public fotoservice:FotoService,public aroute:ActivatedRoute) {}
 
   urlImageStorage:string[]=[]
 
@@ -20,7 +20,9 @@ export class Hal4Page implements OnInit {
   }
   link
   ngOnInit(){
-    
+    this.link=this.aroute.snapshot.paramMap.get('link')    
+    console.log("linkkkk")
+    console.log(this.link)
   }
 
   tampilkanData(){

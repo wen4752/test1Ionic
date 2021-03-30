@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ToastController } from '@ionic/angular';
 import { FotoService } from '../service/foto.service';
 
 @Component({
@@ -8,7 +10,7 @@ import { FotoService } from '../service/foto.service';
 })
 export class Tab2Page {
 
-  constructor(public fotoService:FotoService) {}
+  constructor(public fotoService:FotoService, private afStorage:AngularFireStorage, public toastController:ToastController) {}
 
   public checkBox=[]
 
@@ -17,6 +19,36 @@ export class Tab2Page {
     this.updateCheckbox()
 
   }
+
+  async uploadSelectedPhoto(){
+      let cek=false
+      for(var i=0;i<this.checkBox.length;i++){
+        if(this.checkBox[i].isChecked){
+          const imgFilePath=`imgStorage/${this.fotoService.dataFoto[i].filePath}`
+          cek=true
+          await this.afStorage.upload(imgFilePath,this.fotoService.dataFoto[i].dataImage).then(()=>{
+            this.checkBox[i].isChecked=false
+          })
+        }
+      }
+
+      if(cek){
+        this.presentToast("Upload Berhasil")
+      }else{
+        this.presentToast("Foto belum dipilih")
+      }
+      
+      
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
 
   async ngOnInit(){
     

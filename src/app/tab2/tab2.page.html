@@ -9,8 +9,9 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let isiFoto of fotoService.dataFoto; index as position">        
-        <ion-img [src]="isiFoto.webViewPath"></ion-img>
+      <ion-col size="6" *ngFor="let isi of checkBox; index as position">        
+        <ion-img [src]="isi.webViewPath"></ion-img>
+        <ion-checkbox [(ngModel)]="isi.isChecked"></ion-checkbox>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -20,4 +21,6 @@
       <ion-icon name="camera-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  
 </ion-content>

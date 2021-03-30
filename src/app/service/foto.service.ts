@@ -16,6 +16,13 @@ export class FotoService {
     this.platform=platform
   }
 
+  public getWebViewPath(i){
+    return this.dataFoto[i].webViewPath
+  }
+
+  public getLength(){
+    return this.dataFoto.length
+  }
   public async tambahFoto(){
     const Foto=await Camera.getPhoto({
       resultType:CameraResultType.Uri,

@@ -9,11 +9,30 @@ import { FotoService } from '../service/foto.service';
 export class Tab2Page {
 
   constructor(public fotoService:FotoService) {}
-  tambahFoto(){
-    this.fotoService.tambahFoto()    
+
+  public checkBox=[]
+
+  async tambahFoto(){
+    await this.fotoService.tambahFoto()
+    this.updateCheckbox()
+
   }
 
   async ngOnInit(){
+    
     await this.fotoService.loadFoto()
+    await this.updateCheckbox()
   }
+  async updateCheckbox(){
+    this.checkBox=[]
+    for(var i=0;i<this.fotoService.getLength();i++){
+      this.checkBox.push({
+        webViewPath:this.fotoService.getWebViewPath(i),
+        isChecked:false
+      })
+      
+    }
+  }
+
+  
 }
